@@ -1,789 +1,452 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cabello de Diosa - Secretos Orientales</title>
+    <title>Reto Cabello de Diosa - Oferta Limitada</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap');
 
         :root {
-            --primary: #15803d; /* Verde Esmeralda (Herbal) */
-            --secondary: #dcfce7;
-            --accent: #b45309; /* Dorado/Cobre */
-            --text: #1f2937;
-            --bg: #f0fdf4;
+            --primary: #15803d; /* Verde Esmeralda */
         }
 
-        body {
-            font-family: 'Lato', sans-serif;
-            color: var(--text);
-            background-color: var(--bg);
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* Animação do Botão Pulsante */
+        .pulse-btn {
+            animation: pulse-animation 2s infinite;
+        }
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0 rgba(21, 128, 61, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(21, 128, 61, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(21, 128, 61, 0); }
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .chapter-content {
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        .chapter-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .sidebar-link {
-            transition: all 0.3s ease;
+        /* Estilo da Notificação de Venda */
+        .sales-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            transform: translateY(200%); /* Começa escondido */
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 4px solid #15803d;
+            max-width: 320px;
+            width: 90%;
         }
         
-        .sidebar-link:hover, .sidebar-link.active {
-            background-color: var(--secondary);
-            color: var(--primary);
-            padding-left: 1.5rem;
-            border-right: 4px solid var(--primary);
+        .sales-notification.active {
+            transform: translateY(0);
         }
 
-        .recipe-card {
-            transition: transform 0.2s;
-        }
-        .recipe-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .science-box {
-            background-color: #f0fdf4;
-            border-left: 4px solid var(--primary);
-        }
-
-        /* --- PRINT STYLES --- */
-        @media print {
-            .no-print, #sidebar, #mobile-menu-btn, button, a.no-print-link { 
-                display: none !important; 
-            }
-            .chapter-content { 
-                display: block !important; 
-                opacity: 1 !important; 
-                visibility: visible !important;
-                page-break-after: always; 
-                animation: none !important; 
-            }
-            #install { display: none !important; }
-            html, body, main {
-                height: auto !important;
-                overflow: visible !important;
-                background-color: white !important;
-                width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                display: block !important;
-            }
-            .max-w-4xl {
-                max-width: 100% !important;
-                padding: 0 20px !important;
-            }
-            .recipe-card { 
-                break-inside: avoid; 
-                border: 1px solid #ccc; 
-                box-shadow: none !important; 
-                margin-bottom: 20px; 
-            }
-            .science-box { border: 1px solid #ddd; }
-            .hair-texture { display: none !important; }
-            body, h1, h2, h3, p, li { color: black !important; }
-        }
-        
-        .hair-texture {
-            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1h2v2H1V1zm4 0h2v2H5V1zm4 0h2v2H9V1zm4 0h2v2h-2V1zm4 0h2v2h-2V1zm-16 4h2v2H1V5zm4 0h2v2H5V5zm4 0h2v2H9V5zm4 0h2v2h-2V5zm4 0h2v2h-2V5z' fill='%2315803d' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        .hero-gradient {
+            background: linear-gradient(180deg, #f9fafb 0%, #f0fdf4 100%);
         }
     </style>
 </head>
-<body class="h-screen flex flex-col md:flex-row overflow-hidden">
+<body class="bg-gray-50 text-gray-800">
 
-    <!-- Mobile Menu Button -->
-    <button id="mobile-menu-btn" class="md:hidden fixed top-4 right-4 z-50 bg-[#15803d] text-white p-2 rounded shadow-lg no-print">
-        <i class="fas fa-bars"></i>
-    </button>
+    <div class="bg-red-600 text-white text-center py-3 text-sm font-bold sticky top-0 z-50 shadow-md">
+        <span class="animate-pulse">⚠️ ATENCIÓN:</span> Solo quedan <span id="spots-left" class="bg-white text-red-600 px-2 rounded mx-1">7</span> cupos con el 80% de Descuento
+    </div>
 
-    <!-- Sidebar / Navigation -->
-    <aside id="sidebar" class="w-full md:w-80 bg-white shadow-xl z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 absolute md:relative h-full flex flex-col no-print">
-        <div class="p-8 border-b border-green-100 text-center">
-            <div class="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center text-[#15803d]">
-                <i class="fas fa-crown text-2xl"></i>
+    <header class="hero-gradient pt-8 pb-16 px-4">
+        <div class="container mx-auto max-w-4xl text-center">
+            
+            <div class="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6 border border-green-200">
+                <i class="fas fa-fire text-orange-500"></i> Revelado: El Secreto de la Tribu Yao
             </div>
-            <h1 class="text-2xl font-bold text-[#15803d]">Cabello de Diosa</h1>
-            <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest">Secretos Orientales</p>
+
+            <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6 text-gray-900">
+                Cómo <span class="text-[#15803d] border-b-4 border-yellow-400">Recuperar tu Cabello</span> y Hacerlo Crecer 3x Más Rápido en 30 Días
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+                Sin gastar en productos caros, sin químicos y utilizando ingredientes secretos que ya tienes en tu cocina.
+            </p>
+
+            <div class="relative w-full max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-white mb-10 group hover:scale-[1.01] transition duration-300">
+                <video autoplay muted loop playsinline class="w-full object-cover" poster="hero-image.jpg">
+                    <source src="hero-video.mp4" type="video/mp4">
+                    Tu navegador no soporta videos.
+                </video>
+                </div>
+
+            <div class="flex flex-col items-center gap-3">
+                <a onclick="return false;" href="https://pay.hotmart.com/W103290111E?checkoutMode=2" class="hotmart-fb pulse-btn bg-[#15803d] text-white text-xl md:text-2xl font-bold py-5 px-10 rounded-full shadow-xl hover:bg-[#166534] transition w-full md:w-auto inline-flex items-center justify-center gap-3 transform hover:-translate-y-1 cursor-pointer">
+                    SÍ, QUIERO MI CABELLO DE DIOSA
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <div class="flex items-center gap-4 text-xs text-gray-500 font-medium">
+                    <span><i class="fas fa-lock text-green-600"></i> Acceso Inmediato</span>
+                    <span><i class="fas fa-shield-alt text-green-600"></i> Compra Segura</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-white py-8 border-y border-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 text-xs uppercase tracking-widest mb-6">Método viral en</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition duration-500">
+                <i class="fab fa-instagram text-4xl hover:text-pink-600"></i>
+                <i class="fab fa-tiktok text-4xl hover:text-black"></i>
+                <i class="fab fa-youtube text-4xl hover:text-red-600"></i>
+                <i class="fab fa-pinterest text-4xl hover:text-red-700"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 font-serif text-gray-900">¿Te sientes identificada?</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm border border-red-50 hover:border-red-200 transition">
+                        <div class="bg-red-100 p-3 rounded-full text-red-600 shrink-0"><i class="fas fa-cut"></i></div>
+                        <div>
+                            <h4 class="font-bold text-red-900">Crecimiento Estancado</h4>
+                            <p class="text-sm text-gray-600 mt-1">Tu cabello no pasa de los hombros por más que intentes.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm border border-red-50 hover:border-red-200 transition">
+                        <div class="bg-red-100 p-3 rounded-full text-red-600 shrink-0"><i class="fas fa-shower"></i></div>
+                        <div>
+                            <h4 class="font-bold text-red-900">Caída Excesiva</h4>
+                            <p class="text-sm text-gray-600 mt-1">Ves demasiados pelos en la almohada y en la ducha.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-6 rounded-xl border-l-4 border-[#15803d] mt-8">
+                        <h3 class="font-bold text-[#15803d] text-lg mb-2"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>La Solución Oriental:</h3>
+                        <p class="text-gray-700">El secreto no es la genética. Es el <strong>Agua de Arroz Fermentada</strong> y los aceites correctos. Con esta App, tendrás la receta exacta paso a paso.</p>
+                    </div>
+                </div>
+                
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-[#15803d] rounded-2xl transform rotate-3 group-hover:rotate-1 transition"></div>
+                    <img src="before-after.jpg" alt="Antes y Después" class="relative rounded-2xl shadow-2xl border-4 border-white transform -rotate-2 group-hover:rotate-0 transition duration-500 w-full">
+                    
+                    <div class="absolute -bottom-6 -left-6 bg-yellow-400 text-black font-bold px-6 py-3 rounded-lg shadow-xl transform rotate-[-5deg] z-10 border-2 border-black">
+                        ¡Resultados en 30 Días!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white overflow-hidden">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="text-center mb-12">
+                <span class="text-[#15803d] font-bold tracking-widest uppercase text-sm">Acceso Digital Inmediato</span>
+                <h2 class="text-3xl md:text-5xl font-bold mt-2 font-serif">Tu Entrenador Capilar Personal</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative mx-auto md:order-2">
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-green-50 rounded-full opacity-50 blur-3xl -z-10"></div>
+                    <img src="app-mockup.png" alt="App Mockup" class="w-64 md:w-80 mx-auto drop-shadow-2xl hover:scale-105 transition duration-500">
+                </div>
+                
+                <div class="md:order-1 space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-[#15803d] text-xl shrink-0"><i class="fas fa-book-open"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg">25 Recetas Secretas</h4>
+                            <p class="text-sm text-gray-600">Desde la India hasta China. El paso a paso exacto.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-[#15803d] text-xl shrink-0"><i class="fas fa-wifi"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg">Modo Offline (Sin Internet)</h4>
+                            <p class="text-sm text-gray-600">Guarda la app y úsala en la cocina sin gastar datos.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                        <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-white text-xl shrink-0"><i class="fas fa-gift"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-yellow-800">BONUS GRATIS</h4>
+                            <p class="text-sm text-yellow-800">Acceso a la Comunidad VIP en WhatsApp.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="oferta" class="py-20 bg-[#15803d] text-white text-center relative overflow-hidden">
+        <div class="absolute top-6 right-6 bg-red-600 px-4 py-2 rounded-lg text-sm font-bold shadow-lg animate-bounce hidden md:block">
+            ⏳ La oferta expira en: <span id="timer">15:00</span>
         </div>
 
-        <nav class="flex-1 overflow-y-auto py-6">
-            <ul class="space-y-1">
-                <li><button onclick="showChapter('cover')" class="sidebar-link w-full text-left px-8 py-3 font-medium active">Portada</button></li>
-                
-                <!-- INSTALL BUTTON (Sidebar) -->
-                <li><button onclick="showChapter('install')" class="sidebar-link w-full text-left px-8 py-3 text-sm font-bold text-[#b45309] bg-yellow-50 hover:bg-yellow-100"><i class="fas fa-download mr-2"></i> Instalar App</button></li>
+        <div class="container mx-auto px-4 relative z-10">
+            <h3 class="text-2xl md:text-3xl mb-6 font-serif">Obtén Acceso Vitalicio + Actualizaciones</h3>
+            
+            <div class="flex flex-col items-center justify-center gap-2 mb-8">
+                <span class="text-gray-300 line-through text-2xl">Precio Normal: $49.99</span>
+                <span class="text-7xl md:text-8xl font-black text-yellow-400 font-serif tracking-tighter">$9.99</span>
+                <span class="bg-yellow-400 text-black px-3 py-1 rounded font-bold text-sm uppercase">80% OFF HOY</span>
+            </div>
 
-                <!-- VIP COMMUNITY BUTTON -->
-                <li>
-                    <a href="https://chat.whatsapp.com/DhJw31PaH8f2CwpRgue2Cr" target="_blank" class="sidebar-link w-full text-left px-8 py-3 text-sm font-bold text-green-700 bg-green-50 hover:bg-green-100 flex items-center no-print-link">
-                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Comunidad VIP
-                    </a>
-                </li>
-                
-                <li><button onclick="showChapter('intro')" class="sidebar-link w-full text-left px-8 py-3 text-sm">Introducción</button></li>
-                <li><button onclick="showChapter('chap1')" class="sidebar-link w-full text-left px-8 py-3 text-sm">Cap. 1: Crecimiento Indio (5)</button></li>
-                <li><button onclick="showChapter('chap2')" class="sidebar-link w-full text-left px-8 py-3 text-sm">Cap. 2: Brillo Chino (5)</button></li>
-                <li><button onclick="showChapter('chap3')" class="sidebar-link w-full text-left px-8 py-3 text-sm">Cap. 3: Fuerza y Grosor (5)</button></li>
-                <li><button onclick="showChapter('chap4')" class="sidebar-link w-full text-left px-8 py-3 text-sm">Cap. 4: Mascarillas SOS (5)</button></li>
-                <li><button onclick="showChapter('chap5')" class="sidebar-link w-full text-left px-8 py-3 text-sm">Cap. 5: Tónicos y Aceites (5)</button></li>
-                <li><button onclick="showChapter('bonus')" class="sidebar-link w-full text-left px-8 py-3 text-sm font-bold text-[#15803d]">Bonus: Cronograma Capilar</button></li>
-            </ul>
-        </nav>
+            <p class="text-sm mb-10 opacity-90 max-w-lg mx-auto bg-green-800/50 p-2 rounded">*Pago único. Sin mensualidades. Acceso inmediato.*</p>
 
-        <div class="p-6 border-t border-green-100 space-y-3">
-            <button onclick="shareApp()" class="w-full bg-white border border-[#15803d] text-[#15803d] hover:bg-green-50 py-2 rounded shadow-sm transition flex items-center justify-center gap-2 text-sm font-bold">
-                <i class="fas fa-share-alt"></i> Compartir App
-            </button>
-
-            <button onclick="window.print()" class="w-full bg-[#15803d] hover:bg-[#166534] text-white py-2 rounded shadow transition flex items-center justify-center gap-2 text-sm">
-                <i class="fas fa-print"></i> Guardar PDF
-            </button>
+            <a onclick="return false;" href="https://pay.hotmart.com/W103290111E?checkoutMode=2" class="hotmart-fb bg-white text-[#15803d] text-2xl md:text-3xl font-bold py-5 px-12 rounded-full shadow-2xl hover:scale-105 transition transform inline-block ring-4 ring-green-300 ring-opacity-50 cursor-pointer">
+                DESCARGAR AHORA
+            </a>
+            
+            <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-6 opacity-90">
+                <img src="guarantee.png" class="h-20 w-auto filter drop-shadow-lg">
+                <div class="text-left">
+                    <p class="font-bold text-xl">Garantía de 30 Días</p>
+                    <p class="text-sm text-green-100">Si tu cabello no mejora, te devolvemos el dinero.</p>
+                </div>
+            </div>
         </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="flex-1 relative h-full overflow-y-auto bg-[#f0fdf4] scroll-smooth" id="main-scroll">
-        <div class="absolute inset-0 hair-texture pointer-events-none fixed"></div>
         
-        <div class="max-w-4xl mx-auto p-8 md:p-16 relative min-h-full flex flex-col justify-center">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
+    </section>
 
-            <!-- Cover Page -->
-            <div id="cover" class="chapter-content active text-center py-20">
-                <div class="border-4 border-double border-[#15803d] p-12 inline-block bg-white shadow-2xl rounded-sm max-w-lg mx-auto relative">
-                    <!-- Install Badge on Cover -->
-                    <button onclick="showChapter('install')" class="absolute -top-4 -right-4 bg-yellow-400 text-white rounded-full p-2 shadow-lg hover:bg-yellow-500 animate-bounce no-print" title="Instalar App">
-                        <i class="fas fa-download"></i>
-                    </button>
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-2xl font-bold text-center mb-10 text-gray-800">Lo que dicen en la comunidad</h2>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 space-y-8">
+                
+                <div class="flex gap-4">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" class="w-12 h-12 rounded-full border-2 border-gray-100">
+                    <div>
+                        <div class="bg-gray-100 rounded-2xl px-5 py-3">
+                            <h4 class="font-bold text-sm text-[#15803d] mb-1">Sofia Martínez</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed">Chicas, el tónico de romero es REAL. Mis entradas se llenaron de pelitos nuevos en solo 2 semanas. ¡Gracias por la app!</p>
+                        </div>
+                        <div class="flex gap-4 text-xs text-gray-500 mt-2 ml-2 font-medium">
+                            <span>Me gusta</span> · <span>Responder</span> · <span class="text-gray-400">Hace 2 min</span>
+                        </div>
+                    </div>
+                </div>
 
-                    <p class="text-[#15803d] uppercase tracking-[0.3em] text-sm mb-4">Edición Especial</p>
-                    <h1 class="text-5xl md:text-7xl font-light text-gray-800 mb-6 leading-tight">Cabello de<br><span class="italic font-serif text-[#15803d] font-bold">Diosa</span></h1>
-                    <div class="h-px w-24 bg-gray-300 mx-auto my-6"></div>
-                    <h2 class="text-xl text-gray-600 font-light mb-8">25 Secretos de la India y China para un Cabello Largo, Fuerte y Liso</h2>
-                    
-                    <div class="flex flex-col gap-3 justify-center items-center mb-6">
-                        <button onclick="nextChapter()" class="bg-[#15803d] text-white px-8 py-3 rounded-full hover:bg-[#166534] transition no-print shadow-lg transform hover:-translate-y-1 w-full md:w-auto">
-                            Empezar Reto Rapunzel
-                        </button>
+                <div class="flex gap-4">
+                    <img src="https://randomuser.me/api/portraits/women/22.jpg" class="w-12 h-12 rounded-full border-2 border-gray-100">
+                    <div>
+                        <div class="bg-gray-100 rounded-2xl px-5 py-3">
+                            <h4 class="font-bold text-sm text-[#15803d] mb-1">Valentina R.</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed">El agua de arroz huele raro al principio pero FUNCIONA 😍 mi cabello brilla como espejo.</p>
+                        </div>
+                        <div class="flex gap-4 text-xs text-gray-500 mt-2 ml-2 font-medium">
+                            <span>Me gusta</span> · <span>Responder</span> · <span class="text-gray-400">Hace 5 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <img src="https://randomuser.me/api/portraits/women/90.jpg" class="w-12 h-12 rounded-full border-2 border-gray-100">
+                    <div>
+                        <div class="bg-gray-100 rounded-2xl px-5 py-3">
+                            <h4 class="font-bold text-sm text-[#15803d] mb-1">Camila Torres</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed">¿Sirve para cabello rizado? Tengo miedo que me alise los rizos.</p>
+                        </div>
+                        <div class="flex gap-4 text-xs text-gray-500 mt-2 ml-2 font-medium">
+                            <span>Me gusta</span> · <span>Responder</span> · <span class="text-gray-400">Hace 10 min</span>
+                        </div>
                         
-                        <a href="https://chat.whatsapp.com/DhJw31PaH8f2CwpRgue2Cr" target="_blank" class="bg-[#25D366] text-white px-6 py-2 rounded-full hover:bg-[#128C7E] transition no-print text-sm w-full md:w-auto flex items-center justify-center gap-2 shadow-md transform hover:-translate-y-1">
-                            <i class="fab fa-whatsapp text-lg"></i> Grupo de Apoyo VIP
-                        </a>
-                        
-                        <button onclick="showChapter('install')" class="text-[#b45309] underline text-sm mt-2 font-bold no-print">
-                            <i class="fas fa-mobile-alt mr-1"></i> Instalar App en mi Celular
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- INSTALLATION GUIDE -->
-            <div id="install" class="chapter-content">
-                <span class="text-6xl text-[#15803d] opacity-20 font-serif absolute top-10 left-10"><i class="fas fa-download"></i></span>
-                <h2 class="text-4xl font-serif text-[#15803d] mb-8 border-b border-green-200 pb-4">Instalar la App</h2>
-                <div class="prose prose-lg text-gray-600">
-                    <p class="text-lg mb-6">Guarde esta guía en su pantalla de inicio para acceder sin internet.</p>
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="bg-white p-6 rounded-lg shadow border-l-4 border-[#15803d]">
-                            <h3 class="font-bold mb-4 flex items-center gap-2"><i class="fab fa-android text-green-500"></i> Android (Chrome)</h3>
-                            <ol class="list-decimal ml-5 space-y-2 text-sm">
-                                <li>Toque los <strong>3 puntos (⋮)</strong> arriba a la derecha.</li>
-                                <li>Seleccione <strong>"Instalar aplicación"</strong> o "Añadir a pantalla de inicio".</li>
-                                <li>Confirme en <strong>"Instalar"</strong>.</li>
-                            </ol>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow border-l-4 border-gray-400">
-                            <h3 class="font-bold mb-4 flex items-center gap-2"><i class="fab fa-apple text-gray-800"></i> iPhone (Safari)</h3>
-                            <ol class="list-decimal ml-5 space-y-2 text-sm">
-                                <li>Toque el botón <strong>Compartir</strong> (cuadrado con flecha).</li>
-                                <li>Deslice y elija <strong>"Añadir a la pantalla de inicio"</strong>.</li>
-                                <li>Toque <strong>"Añadir"</strong> arriba a la derecha.</li>
-                            </ol>
-                        </div>
-                    </div>
-                    <button onclick="showChapter('intro')" class="mt-8 bg-[#15803d] text-white px-6 py-2 rounded-full hover:bg-[#166534]">Volver al libro</button>
-                </div>
-            </div>
-
-            <!-- Introduction -->
-            <div id="intro" class="chapter-content">
-                <span class="text-6xl text-[#15803d] opacity-20 font-serif absolute top-10 left-10">00</span>
-                <h2 class="text-4xl font-serif text-[#15803d] mb-8 border-b border-green-200 pb-4">La Herencia Oriental</h2>
-                <div class="prose prose-lg text-gray-600">
-                    <p class="mb-4 text-xl italic">¿Por qué las mujeres de la tribu Yao en China tienen el cabello de 2 metros? ¿Por qué las indias tienen el cabello más grueso del mundo?</p>
-                    <p>La respuesta no está en champús caros, sino en la cocina y la naturaleza. Hemos recopilado 25 recetas ancestrales verificadas para transformar su cabello.</p>
-                    
-                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 mt-8 my-4 rounded shadow-sm">
-                        <h3 class="font-bold text-yellow-700 flex items-center gap-2 mb-3"><i class="fas fa-exclamation-circle"></i> REGLAS DE ORO</h3>
-                        <ul class="list-disc ml-5 text-sm text-yellow-800 space-y-2">
-                            <li><strong>Constancia:</strong> Los remedios naturales tardan 4 semanas en mostrar cambios reales.</li>
-                            <li><strong>Prueba de Parche:</strong> Pruebe siempre en una pequeña zona del cuello antes de usar.</li>
-                            <li><strong>Calidad:</strong> Use aceites vírgenes y prensados en frío siempre que sea posible.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chapter 1: Growth (India) -->
-            <div id="chap1" class="chapter-content">
-                <span class="text-6xl text-[#15803d] opacity-20 font-serif absolute top-10 left-10">01</span>
-                <h2 class="text-4xl font-serif text-[#15803d] mb-2">Crecimiento Indio</h2>
-                <p class="text-gray-400 italic mb-8 border-b border-green-200 pb-4">Secretos de Ayurveda</p>
-
-                <div class="grid md:grid-cols-1 gap-8">
-                    <!-- Receta 1 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-100 recipe-card">
-                        <h3 class="text-xl font-bold font-serif text-[#15803d] mb-4">1. Aceite Mágico de Amla</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded">
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-carrot"></i> Ingredientes:</strong>
-                                <ul class="list-disc ml-4 text-sm text-gray-700">
-                                    <li>2 cucharadas de polvo de Amla (Grosella India)</li>
-                                    <li>1 taza de Aceite de Coco virgen</li>
-                                </ul>
-                            </div>
+                        <div class="flex gap-3 mt-4 ml-2 animate-pulse">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-8 h-8 rounded-full border border-green-200">
                             <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-blender"></i> Preparación:</strong>
-                                <p class="text-sm text-gray-700">En una olla pequeña, mezcle el polvo y el aceite. Caliente a fuego MUY bajo durante 10 minutos (no deje que hierva o humee). Deje enfriar y cuele en un frasco de vidrio oscuro.</p>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-hand-sparkles"></i> Modo de Uso:</strong>
-                                <p class="text-sm text-gray-700">Aplique tibio en el cuero cabelludo con un masaje circular de 5 minutos. Deje actuar 1 hora o toda la noche antes de lavar. <strong>Frecuencia:</strong> 2 veces por semana.</p>
-                            </div>
-                        </div>
-                        <div class="science-box p-2 mt-3 rounded text-xs text-green-800"><strong>🧪 Ciencia:</strong> El Amla es rico en Vitamina C y antioxidantes, estimulando folículos dormidos y previniendo canas.</div>
-                    </div>
-
-                    <!-- Receta 2 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-100 recipe-card">
-                        <h3 class="text-xl font-bold font-serif text-[#15803d] mb-4">2. Bomba de Cebolla Roja</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded">
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-carrot"></i> Ingredientes:</strong>
-                                <ul class="list-disc ml-4 text-sm text-gray-700">
-                                    <li>2 cebollas rojas medianas</li>
-                                    <li>Disco de algodón</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-blender"></i> Preparación:</strong>
-                                <p class="text-sm text-gray-700">Pele y corte las cebollas. Licúelas sin agua (o rállelas). Exprima la pulpa en un paño limpio o colador fino para extraer solo el jugo puro.</p>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-hand-sparkles"></i> Modo de Uso:</strong>
-                                <p class="text-sm text-gray-700">Moje el algodón en el jugo y aplique dando toques en las zonas con clareos o entradas. Deje actuar 30 min y lave con champú. El olor se va al secar. <strong>Frecuencia:</strong> 1 vez por semana.</p>
-                            </div>
-                        </div>
-                        <div class="science-box p-2 mt-3 rounded text-xs text-green-800"><strong>🧪 Ciencia:</strong> El azufre de la cebolla regenera el colágeno necesario para el crecimiento.</div>
-                    </div>
-
-                    <!-- Receta 3 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-100 recipe-card">
-                        <h3 class="text-xl font-bold font-serif text-[#15803d] mb-4">3. Tónico de Hojas de Curry</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded">
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-carrot"></i> Ingredientes:</strong>
-                                <ul class="list-disc ml-4 text-sm text-gray-700">
-                                    <li>1 puñado de hojas de curry frescas</li>
-                                    <li>3 cucharadas de Aceite de Coco</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-blender"></i> Preparación:</strong>
-                                <p class="text-sm text-gray-700">Ponga el aceite y las hojas en una sartén. Fría las hojas hasta que se formen residuos negros en los bordes. Apague y deje enfriar. Cuele.</p>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-hand-sparkles"></i> Modo de Uso:</strong>
-                                <p class="text-sm text-gray-700">Aplique este tónico concentrado en las raíces y puntas 1 hora antes del baño. Es excelente para detener la caída. <strong>Frecuencia:</strong> 1 vez por semana.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 4 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-100 recipe-card">
-                        <h3 class="text-xl font-bold font-serif text-[#15803d] mb-4">4. Mascarilla de Fenogreco (Methi)</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded">
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-carrot"></i> Ingredientes:</strong>
-                                <ul class="list-disc ml-4 text-sm text-gray-700">
-                                    <li>2 cucharadas de semillas de fenogreco</li>
-                                    <li>Agua (suficiente para cubrir)</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-blender"></i> Preparación:</strong>
-                                <p class="text-sm text-gray-700">Deje las semillas en remojo en agua toda la noche. Por la mañana, triture las semillas blandas (puede añadir un poco de agua del remojo) hasta formar una pasta suave.</p>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-hand-sparkles"></i> Modo de Uso:</strong>
-                                <p class="text-sm text-gray-700">Aplique la pasta en el cuero cabelludo como una mascarilla. Deje 30 minutos y enjuague muy bien. <strong>Frecuencia:</strong> Cada 15 días.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 5 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-100 recipe-card">
-                        <h3 class="text-xl font-bold font-serif text-[#15803d] mb-4">5. Masaje Inverso (Inversion Method)</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded">
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-carrot"></i> Ingredientes:</strong>
-                                <ul class="list-disc ml-4 text-sm text-gray-700">
-                                    <li>Aceite de Ricino o Oliva (tibio)</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-blender"></i> Preparación:</strong>
-                                <p class="text-sm text-gray-700">Caliente ligeramente el aceite al baño maría (que no queme, solo tibio al tacto).</p>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-hand-sparkles"></i> Modo de Uso:</strong>
-                                <p class="text-sm text-gray-700">Aplique el aceite en el cuero cabelludo. Siéntese en una silla y baje la cabeza entre las piernas (para que el corazón quede más alto que la cabeza). Masajee durante 4 minutos exactos. <strong>Frecuencia:</strong> 7 días seguidos al mes (no más).</p>
+                                <div class="bg-green-50 rounded-2xl px-4 py-2 border border-green-100">
+                                    <h4 class="font-bold text-xs text-[#15803d] flex items-center gap-1">Admin <i class="fas fa-check-circle text-[10px]"></i></h4>
+                                    <p class="text-xs text-gray-700">¡Hola Camila! Sí, la sección de Hidratación Profunda es ideal para rizos. 🌀</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-
-            <!-- Chapter 2: Shine (China) -->
-            <div id="chap2" class="chapter-content">
-                <span class="text-6xl text-[#15803d] opacity-20 font-serif absolute top-10 left-10">02</span>
-                <h2 class="text-4xl font-serif text-[#15803d] mb-2">Liso y Brillante (China)</h2>
-                <p class="text-gray-400 italic mb-8 border-b border-green-200 pb-4">El Secreto de la Tribu Yao</p>
-
-                <!-- Featured Recipe 6 -->
-                <div class="bg-gradient-to-br from-[#fff] to-[#f0fdf4] p-8 rounded-xl shadow-md border border-[#15803d] mb-8">
-                    <h3 class="text-2xl font-serif font-bold text-[#15803d] mb-4">6. Agua de Arroz Fermentada</h3>
-                    <div class="space-y-4">
-                        <div class="bg-white/80 p-3 rounded border border-green-100">
-                            <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-carrot"></i> Ingredientes:</strong>
-                            <ul class="list-disc ml-4 text-sm text-gray-700">
-                                <li>1 taza de arroz blanco</li>
-                                <li>3 tazas de agua</li>
-                                <li>Cáscaras de naranja o pomelo (opcional, para el olor)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-blender"></i> Preparación:</strong>
-                            <p class="text-sm text-gray-700">1. Lave el arroz para quitar la suciedad.<br>2. Ponga el arroz limpio en las 3 tazas de agua y frote fuerte con las manos como si lavara ropa, hasta que el agua salga muy blanca.<br>3. Cuele esa agua a un frasco limpio. Añada las cáscaras.<br>4. Deje reposar a temperatura ambiente 24 horas (fermentación).</p>
-                        </div>
-                        <div>
-                            <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-hand-sparkles"></i> Modo de Uso:</strong>
-                            <p class="text-sm text-gray-700">Lave su cabello con champú. Use el agua de arroz como último enjuague, vertiéndola por todo el pelo. Masajee 2 minutos y enjuague con agua fría. <strong>Frecuencia:</strong> 1 o 2 veces por semana.</p>
-                        </div>
-                    </div>
-                    <div class="science-box p-3 mt-4 rounded text-xs text-green-800"><strong>🧪 Ciencia:</strong> Rica en inositol, repara el daño y da elasticidad extrema.</div>
-                </div>
-
-                <div class="grid md:grid-cols-1 gap-6">
-                    <!-- Receta 7 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-100 recipe-card">
-                        <h3 class="text-xl font-bold text-[#15803d] mb-4">7. Enjuague de Té Verde</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded">
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-carrot"></i> Ingredientes:</strong>
-                                <ul class="list-disc ml-4 text-sm"><li>2 bolsitas de té verde</li><li>2 tazas de agua hirviendo</li></ul>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-blender"></i> Preparación:</strong>
-                                <p class="text-sm">Haga una infusión con el té y el agua. Deje reposar hasta que enfríe completamente. Retire las bolsas.</p>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-hand-sparkles"></i> Modo de Uso:</strong>
-                                <p class="text-sm">Después de lavar y acondicionar, vierta el té frío sobre el cabello. No enjuague con agua después. <strong>Frecuencia:</strong> Cada lavado.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 8 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-100 recipe-card">
-                        <h3 class="text-xl font-bold text-[#15803d] mb-4">8. Tónico de Jengibre</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded">
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-carrot"></i> Ingredientes:</strong>
-                                <ul class="list-disc ml-4 text-sm"><li>Un trozo de jengibre fresco (5cm)</li><li>1/2 taza de agua</li></ul>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-blender"></i> Preparación:</strong>
-                                <p class="text-sm">Ralle el jengibre finamente. Exprima la ralladura para sacar el jugo. Mezcle ese jugo potente con el agua.</p>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-hand-sparkles"></i> Modo de Uso:</strong>
-                                <p class="text-sm">Rocíe en el cuero cabelludo y masajee vigorosamente antes de lavar el pelo. Sentirá un calor suave. <strong>Frecuencia:</strong> 1 vez por semana.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 9 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-100 recipe-card">
-                        <h3 class="text-xl font-bold text-[#15803d] mb-4">9. Aceite de Camelia (Tsubaki)</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded">
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-carrot"></i> Ingredientes:</strong>
-                                <ul class="list-disc ml-4 text-sm"><li>Aceite de Camelia puro</li></ul>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-blender"></i> Preparación:</strong>
-                                <p class="text-sm">No requiere mezcla. Simplemente ponga 3-4 gotas en la palma de la mano y frote para calentar.</p>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-hand-sparkles"></i> Modo de Uso:</strong>
-                                <p class="text-sm">Aplique de medios a puntas sobre el cabello húmedo o seco para sellar la cutícula. No enjuagar. <strong>Frecuencia:</strong> Diario.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 10 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-100 recipe-card">
-                        <h3 class="text-xl font-bold text-[#15803d] mb-4">10. Vinagre de Manzana (pH)</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded">
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-carrot"></i> Ingredientes:</strong>
-                                <ul class="list-disc ml-4 text-sm"><li>1 parte de Vinagre de Manzana</li><li>5 partes de Agua fría</li></ul>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-blender"></i> Preparación:</strong>
-                                <p class="text-sm">Mezcle ambos líquidos en una jarra o botella grande justo antes de entrar a la ducha.</p>
-                            </div>
-                            <div>
-                                <strong class="text-[#15803d] uppercase text-xs block mb-1"><i class="fas fa-hand-sparkles"></i> Modo de Uso:</strong>
-                                <p class="text-sm">Use como enjuague final después del acondicionador. Cierre los ojos (arde). Ayuda a desenredar y dar brillo espejo. <strong>Frecuencia:</strong> 1 vez por semana.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chapter 3: Strength -->
-            <div id="chap3" class="chapter-content">
-                <span class="text-6xl text-[#15803d] opacity-20 font-serif absolute top-10 left-10">03</span>
-                <h2 class="text-4xl font-serif text-[#15803d] mb-2">Fuerza y Grosor</h2>
-                <div class="grid md:grid-cols-1 gap-6 mt-8">
-                    <!-- Receta 11 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card border border-green-50">
-                        <h3 class="font-bold text-lg mb-4 text-[#15803d]">11. Mascarilla de Proteína (Huevo)</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded"><strong class="text-[#15803d] text-xs uppercase block">Ingredientes:</strong> 1 Huevo entero + 1 cucharada de Aceite de Oliva.</div>
-                            <div><strong class="text-[#15803d] text-xs uppercase block">Preparación:</strong> Bata el huevo con el aceite hasta que emulsione bien.</div>
-                            <div><strong class="text-[#15803d] text-xs uppercase block">Modo de Uso:</strong> Aplique en cabello húmedo de raíz a puntas. Deje 20 min. Enjuague con agua FRÍA o tibia (nunca caliente). <strong>Frecuencia:</strong> Quincenal.</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 12 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card border border-green-50">
-                        <h3 class="font-bold text-lg mb-4 text-[#15803d]">12. Gel de Linaza (Laminado)</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded"><strong class="text-[#15803d] text-xs uppercase block">Ingredientes:</strong> 2 cdas semillas de lino + 1 taza de agua.</div>
-                            <div><strong class="text-[#15803d] text-xs uppercase block">Preparación:</strong> Hierva las semillas en agua 5-7 min hasta que salga una espuma blanca y espese. Cuele inmediatamente mientras está caliente.</div>
-                            <div><strong class="text-[#15803d] text-xs uppercase block">Modo de Uso:</strong> Aplique el gel (baba) en todo el cabello. Puede usarse como mascarilla (30 min) o como gel de peinar sin enjuague.</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 13 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card border border-green-50">
-                        <h3 class="font-bold text-lg mb-4 text-[#15803d]">13. Aloe Vera y Ricino</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded"><strong class="text-[#15803d] text-xs uppercase block">Ingredientes:</strong> 3 cdas Gel de Aloe Vera + 1 cda Aceite de Ricino.</div>
-                            <div><strong class="text-[#15803d] text-xs uppercase block">Preparación:</strong> Mezcle ambos ingredientes en un bol hasta que se integren.</div>
-                            <div><strong class="text-[#15803d] text-xs uppercase block">Modo de Uso:</strong> Aplique solo en el cuero cabelludo y masajee. Deje actuar toda la noche con un gorro. <strong>Frecuencia:</strong> Semanal.</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 14 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card border border-green-50">
-                        <h3 class="font-bold text-lg mb-4 text-[#15803d]">14. Mascarilla de Plátano</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded"><strong class="text-[#15803d] text-xs uppercase block">Ingredientes:</strong> 1 Plátano muy maduro + 1 cda Miel.</div>
-                            <div><strong class="text-[#15803d] text-xs uppercase block">Preparación:</strong> Triture el plátano hasta hacerlo puré sin ningún grumo (use batidora si puede). Mezcle con miel.</div>
-                            <div><strong class="text-[#15803d] text-xs uppercase block">Modo de Uso:</strong> Aplique en todo el cabello. Cubra con gorro 30 min. Enjuague bien.</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 15 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card border border-green-50">
-                        <h3 class="font-bold text-lg mb-4 text-[#15803d]">15. Pasta de Sésamo Negro</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 p-3 rounded"><strong class="text-[#15803d] text-xs uppercase block">Ingredientes:</strong> 2 cdas semillas de Sésamo Negro + Leche tibia.</div>
-                            <div><strong class="text-[#15803d] text-xs uppercase block">Preparación:</strong> Remoje el sésamo 2 horas. Triture con un poco de leche hasta formar una pasta.</div>
-                            <div><strong class="text-[#15803d] text-xs uppercase block">Modo de Uso:</strong> Aplique en las raíces. Tradición china para oscurecer y fortalecer. Deje 40 min y lave.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chapter 4: SOS Masks -->
-            <div id="chap4" class="chapter-content">
-                <span class="text-6xl text-[#15803d] opacity-20 font-serif absolute top-10 left-10">04</span>
-                <h2 class="text-4xl font-serif text-[#15803d] mb-2">Mascarillas SOS</h2>
-                <div class="grid md:grid-cols-1 gap-6 mt-8">
-                    <!-- Receta 16 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card border-l-4 border-red-400">
-                        <h3 class="font-bold text-lg mb-4">16. Yogur y Limón (Anti-Caspa)</h3>
-                        <div class="space-y-3 text-sm">
-                            <div><strong>Ingredientes:</strong> 1/2 taza Yogur natural + Jugo de 1/2 Limón.</div>
-                            <div><strong>Preparación:</strong> Mezcle en un bol.</div>
-                            <div><strong>Uso:</strong> Aplique en el cuero cabelludo seco antes del baño. Deje 20 min.</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 17 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card border-l-4 border-yellow-400">
-                        <h3 class="font-bold text-lg mb-4">17. Aguacate y Mayonesa (Puntas Secas)</h3>
-                        <div class="space-y-3 text-sm">
-                            <div><strong>Ingredientes:</strong> 1/2 Aguacate maduro + 1 cda Mayonesa.</div>
-                            <div><strong>Preparación:</strong> Haga un puré fino con el aguacate y mezcle con la mayonesa.</div>
-                            <div><strong>Uso:</strong> Aplique solo de medios a puntas. Cubra con gorro 30 min.</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 18 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card border-l-4 border-blue-400">
-                        <h3 class="font-bold text-lg mb-4">18. Peeling Capilar Casero</h3>
-                        <div class="space-y-3 text-sm">
-                            <div><strong>Ingredientes:</strong> 1 cda Azúcar Morena + Su Champú habitual.</div>
-                            <div><strong>Preparación:</strong> Mezcle en la palma de la mano justo al entrar a la ducha.</div>
-                            <div><strong>Uso:</strong> Frote suavemente el cuero cabelludo para exfoliar. Enjuague bien.</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 19 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card">
-                        <h3 class="font-bold text-lg mb-4">19. Canela y Miel (Estimulante)</h3>
-                        <div class="space-y-3 text-sm">
-                            <div><strong>Ingredientes:</strong> 1 cda Canela en polvo + 1 cda Miel + 1 cda Aceite.</div>
-                            <div><strong>Preparación:</strong> Mezcle hasta hacer una pasta homogénea.</div>
-                            <div><strong>Uso:</strong> Aplique en el cuero cabelludo 15 min. (Precaución: puede picar un poco).</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 20 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card">
-                        <h3 class="font-bold text-lg mb-4">20. Tónico de Hibisco</h3>
-                        <div class="space-y-3 text-sm">
-                            <div><strong>Ingredientes:</strong> Flores de Hibisco secas + 1 taza de Agua.</div>
-                            <div><strong>Preparación:</strong> Hierva hasta que el agua se torne roja intensa. Deje enfriar y cuele.</div>
-                            <div><strong>Uso:</strong> Rocíe en el cuero cabelludo diariamente. No necesita enjuague.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chapter 5: Tonics -->
-            <div id="chap5" class="chapter-content">
-                <span class="text-6xl text-[#15803d] opacity-20 font-serif absolute top-10 left-10">05</span>
-                <h2 class="text-4xl font-serif text-[#15803d] mb-2">Tónicos y Aceites Finales</h2>
-                <div class="grid md:grid-cols-1 gap-6 mt-8">
-                    <!-- Receta 21 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card">
-                        <h3 class="font-bold text-lg text-[#15803d] mb-4">21. Agua de Romero (Viral)</h3>
-                        <div class="space-y-3 text-sm">
-                            <div><strong>Ingredientes:</strong> 3 ramas de romero fresco + 2 tazas de agua.</div>
-                            <div><strong>Preparación:</strong> Hierva el romero en el agua 15 min. Deje reposar tapado hasta enfriar (se oscurecerá). Cuele a un spray.</div>
-                            <div><strong>Uso:</strong> Rocíe en raíces cada noche antes de dormir.</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 22 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card">
-                        <h3 class="font-bold text-lg text-[#15803d] mb-4">22. Aceite de Mostaza (Tradición India)</h3>
-                        <div class="space-y-3 text-sm">
-                            <div><strong>Ingredientes:</strong> Aceite de mostaza puro.</div>
-                            <div><strong>Preparación:</strong> Caliente ligeramente una pequeña cantidad.</div>
-                            <div><strong>Uso:</strong> Masajee vigorosamente el cuero cabelludo. Genera calor y circulación. Lavar tras 1 hora.</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 23 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card">
-                        <h3 class="font-bold text-lg text-[#15803d] mb-4">23. Leche de Coco (Alisado)</h3>
-                        <div class="space-y-3 text-sm">
-                            <div><strong>Ingredientes:</strong> 1/2 taza Leche de coco + Jugo de 1 limón.</div>
-                            <div><strong>Preparación:</strong> Mezcle y refrigere 2 horas hasta que espese/cuaje.</div>
-                            <div><strong>Uso:</strong> Aplique de raíz a puntas. Envuelva en toalla caliente 1 hora. Efecto liso natural.</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 24 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card">
-                        <h3 class="font-bold text-lg text-[#15803d] mb-4">24. Enjuague de Cerveza</h3>
-                        <div class="space-y-3 text-sm">
-                            <div><strong>Ingredientes:</strong> 1 vaso de cerveza (abierta el día anterior para quitar el gas).</div>
-                            <div><strong>Preparación:</strong> Ninguna, solo asegúrese que esté sin gas.</div>
-                            <div><strong>Uso:</strong> Use después del champú. Masajee y enjuague. Da mucho volumen.</div>
-                        </div>
-                    </div>
-
-                    <!-- Receta 25 -->
-                    <div class="bg-white p-6 rounded shadow-sm recipe-card">
-                        <h3 class="font-bold text-lg text-[#15803d] mb-4">25. Jugo de Papa (Limpieza Profunda)</h3>
-                        <div class="space-y-3 text-sm">
-                            <div><strong>Ingredientes:</strong> 1 papa grande rallada.</div>
-                            <div><strong>Preparación:</strong> Extraiga el jugo apretando la ralladura.</div>
-                            <div><strong>Uso:</strong> Masajee en el cuero cabelludo 20 min antes de lavar. Limpia folículos obstruidos.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bonus -->
-            <div id="bonus" class="chapter-content">
-                <span class="text-6xl text-[#15803d] opacity-20 font-serif absolute top-10 left-10">★</span>
-                <h2 class="text-4xl font-serif text-[#15803d] mb-8 border-b border-green-200 pb-4 text-center">Cronograma Capilar (Mes 1)</h2>
-
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse bg-white shadow-lg rounded-lg overflow-hidden text-sm md:text-base">
-                        <thead class="bg-[#15803d] text-white">
-                            <tr>
-                                <th class="p-4 font-serif">Día</th>
-                                <th class="p-4 font-serif">Foco</th>
-                                <th class="p-4 font-serif">Receta</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            <tr class="hover:bg-green-50">
-                                <td class="p-3 font-bold text-gray-400">Lun</td>
-                                <td class="p-3 font-bold text-[#15803d]">Crecimiento</td>
-                                <td class="p-3">Tónico de Romero (Mañana)</td>
-                            </tr>
-                            <tr class="hover:bg-green-50">
-                                <td class="p-3 font-bold text-gray-400">Mar</td>
-                                <td class="p-3 font-bold text-[#15803d]">Lavado</td>
-                                <td class="p-3">Champú + Agua de Arroz</td>
-                            </tr>
-                            <tr class="hover:bg-green-50">
-                                <td class="p-3 font-bold text-gray-400">Mié</td>
-                                <td class="p-3 font-bold text-[#15803d]">Descanso</td>
-                                <td class="p-3">Masaje capilar 5 min (seco)</td>
-                            </tr>
-                            <tr class="hover:bg-green-50">
-                                <td class="p-3 font-bold text-gray-400">Jue</td>
-                                <td class="p-3 font-bold text-[#15803d]">Nutrición</td>
-                                <td class="p-3">Aceite de Amla (Noche anterior)</td>
-                            </tr>
-                            <tr class="hover:bg-green-50">
-                                <td class="p-3 font-bold text-gray-400">Vie</td>
-                                <td class="p-3 font-bold text-[#15803d]">Styling</td>
-                                <td class="p-3">Gel de Linaza</td>
-                            </tr>
-                            <tr class="hover:bg-green-50">
-                                <td class="p-3 font-bold text-gray-400">Sáb</td>
-                                <td class="p-3 font-bold text-[#15803d]">SPA Profundo</td>
-                                <td class="p-3">Mascarilla Huevo + Aceite</td>
-                            </tr>
-                            <tr class="hover:bg-green-50">
-                                <td class="p-3 font-bold text-gray-400">Dom</td>
-                                <td class="p-3 font-bold text-green-500">Detox</td>
-                                <td class="p-3">Exfoliante Azúcar (si lava)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <div class="mt-12 flex justify-between items-center border-t border-green-200 pt-6 no-print">
-                <button id="prev-btn" onclick="prevChapter()" class="text-gray-400 hover:text-[#15803d] disabled:opacity-30 disabled:cursor-not-allowed">
-                    <i class="fas fa-arrow-left mr-2"></i> Anterior
-                </button>
-                <div class="text-xs text-gray-300">Página <span id="page-num">1</span> de 8</div>
-                <button id="next-btn" onclick="nextChapter()" class="text-[#15803d] font-bold hover:text-[#166534] disabled:opacity-30 disabled:cursor-not-allowed">
-                    Siguiente <i class="fas fa-arrow-right ml-2"></i>
-                </button>
-            </div>
-
         </div>
-    </main>
+    </section>
+
+    <section class="py-20 bg-white border-t border-gray-100">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-12">
+                <span class="text-[#15803d] font-bold tracking-widest uppercase text-sm">¿Tienes dudas?</span>
+                <h2 class="text-3xl font-bold mt-2 font-serif text-gray-900">Preguntas Frecuentes</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer border border-transparent hover:border-green-200 transition duration-300 open:bg-green-50 open:border-green-200 open:shadow-md">
+                    <summary class="font-bold text-lg text-[#15803d] flex justify-between items-center list-none select-none">
+                        ¿Funciona para cabello teñido o decolorado?
+                        <span class="transition-transform duration-300 group-open:rotate-180 bg-green-200 rounded-full w-8 h-8 flex items-center justify-center text-green-700"><i class="fas fa-chevron-down text-sm"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed pl-2 border-l-4 border-green-300">
+                        <p><strong>¡Sí!</strong> De hecho, es el que más se beneficia. El Agua de Arroz Fermentada es rica en inositol, que repara el cabello dañado desde adentro, devolviendo la elasticidad.</p>
+                    </div>
+                </details>
+                
+                <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer border border-transparent hover:border-green-200 transition duration-300 open:bg-green-50 open:border-green-200 open:shadow-md">
+                    <summary class="font-bold text-lg text-[#15803d] flex justify-between items-center list-none select-none">
+                        ¿El agua de arroz dejará mal olor?
+                        <span class="transition-transform duration-300 group-open:rotate-180 bg-green-200 rounded-full w-8 h-8 flex items-center justify-center text-green-700"><i class="fas fa-chevron-down text-sm"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed pl-2 border-l-4 border-green-300">
+                        <p>No te preocupes. Enseñamos el <strong>"Secreto de los Aceites Esenciales"</strong> y la técnica de enjuague correcta. Tu cabello olerá a limpio y fresco.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer border border-transparent hover:border-green-200 transition duration-300 open:bg-green-50 open:border-green-200 open:shadow-md">
+                    <summary class="font-bold text-lg text-[#15803d] flex justify-between items-center list-none select-none">
+                        ¿Necesito comprar ingredientes caros?
+                        <span class="transition-transform duration-300 group-open:rotate-180 bg-green-200 rounded-full w-8 h-8 flex items-center justify-center text-green-700"><i class="fas fa-chevron-down text-sm"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed pl-2 border-l-4 border-green-300">
+                        <p>¡Para nada! El 90% son ingredientes como: arroz, romero, jengibre, huevo, aceite de oliva, azúcar, etc. Es mucho más barato que productos de marca.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer border border-transparent hover:border-green-200 transition duration-300 open:bg-green-50 open:border-green-200 open:shadow-md">
+                    <summary class="font-bold text-lg text-[#15803d] flex justify-between items-center list-none select-none">
+                        ¿Cómo recibo el acceso a la App?
+                        <span class="transition-transform duration-300 group-open:rotate-180 bg-green-200 rounded-full w-8 h-8 flex items-center justify-center text-green-700"><i class="fas fa-chevron-down text-sm"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed pl-2 border-l-4 border-green-300">
+                        <p>Es <strong>inmediato</strong>. Al completar tu pago de $9.99, recibirás un correo electrónico con tu enlace personal de acceso. No hay que descargar nada pesado.</p>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a onclick="return false;" href="https://pay.hotmart.com/W103290111E?checkoutMode=2" class="hotmart-fb inline-block bg-[#15803d] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#166534] transition transform hover:-translate-y-1 cursor-pointer">
+                    Quiero Empezar Mi Reto Ahora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-10 text-center text-xs">
+        <div class="mb-4">
+            <i class="fas fa-crown text-2xl text-gray-700 mb-2 block"></i>
+            <span class="font-serif text-lg text-gray-500">Cabello de Diosa</span>
+        </div>
+        <div class="flex justify-center gap-6 mb-6">
+            <a href="#" class="hover:text-white transition">Términos de Uso</a>
+            <a href="#" class="hover:text-white transition">Políticas de Privacidad</a>
+            <a href="#" class="hover:text-white transition">Contacto</a>
+        </div>
+        <p class="opacity-50 max-w-md mx-auto leading-relaxed">
+            Este sitio no es parte del sitio web de Facebook o Facebook Inc. Además, este sitio no está respaldado por Facebook de ninguna manera.
+        </p>
+        <p class="mt-4 opacity-30">© 2025 Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="sales-popup" class="sales-notification">
+        <div class="relative shrink-0">
+            <img id="buyer-photo" src="" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md">
+            <div class="absolute bottom-0 right-0 bg-green-500 w-3 h-3 rounded-full border-2 border-white"></div>
+        </div>
+        <div class="flex-1 min-w-0">
+            <p class="text-xs text-gray-500 leading-tight mb-1">
+                <span class="font-bold text-gray-900 block truncate text-sm" id="buyer-name">Nombre aquí</span>
+                acaba de comprar
+            </p>
+            <div class="flex items-center gap-1 bg-green-50 inline-block px-2 py-0.5 rounded border border-green-100">
+                <i class="fas fa-check-circle text-[10px] text-[#15803d]"></i>
+                <span class="text-[10px] text-[#15803d] font-bold uppercase tracking-wide">Acceso Total</span>
+            </div>
+        </div>
+        <p class="text-[10px] text-gray-400 font-medium whitespace-nowrap self-start mt-1">hace <span id="time-ago">2s</span></p>
+    </div>
 
     <script>
-        const chapters = ['cover', 'install', 'intro', 'chap1', 'chap2', 'chap3', 'chap4', 'chap5', 'bonus'];
-        let currentIndex = 0;
+        // Lista de Compradoras (Fakes)
+        const buyers = [
+            { name: "María G. de México", photo: "https://randomuser.me/api/portraits/women/44.jpg" },
+            { name: "Ana P. de Colombia", photo: "https://randomuser.me/api/portraits/women/68.jpg" },
+            { name: "Sofía R. de España", photo: "https://randomuser.me/api/portraits/women/65.jpg" },
+            { name: "Carla T. de Chile", photo: "https://randomuser.me/api/portraits/women/33.jpg" },
+            { name: "Valentina M. de Perú", photo: "https://randomuser.me/api/portraits/women/90.jpg" },
+            { name: "Laura D. de Argentina", photo: "https://randomuser.me/api/portraits/women/54.jpg" },
+            { name: "Gabriela S. de USA", photo: "https://randomuser.me/api/portraits/women/28.jpg" },
+            { name: "Lucía F. de Ecuador", photo: "https://randomuser.me/api/portraits/women/12.jpg" },
+            { name: "Fernanda L. de México", photo: "https://randomuser.me/api/portraits/women/76.jpg" },
+            { name: "Isabella C. de Colombia", photo: "https://randomuser.me/api/portraits/women/42.jpg" }
+        ];
 
-        function showChapter(id) {
-            document.querySelectorAll('.chapter-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
+        // Mostrar Notificação
+        function showSaleNotification() {
+            const popup = document.getElementById('sales-popup');
+            const nameEl = document.getElementById('buyer-name');
+            const photoEl = document.getElementById('buyer-photo');
+            const timeEl = document.getElementById('time-ago');
             
-            document.getElementById(id).classList.add('active');
+            const randomBuyer = buyers[Math.floor(Math.random() * buyers.length)];
             
-            const activeLink = document.querySelector(`button[onclick="showChapter('${id}')"]`);
-            if(activeLink) activeLink.classList.add('active');
-
-            currentIndex = chapters.indexOf(id);
-            updateNavButtons();
+            nameEl.textContent = randomBuyer.name;
+            photoEl.src = randomBuyer.photo;
+            timeEl.textContent = Math.floor(Math.random() * 5 + 1) + "s";
             
-            document.getElementById('sidebar').classList.add('-translate-x-full');
-            document.getElementById('main-scroll').scrollTop = 0;
+            popup.classList.add('active');
+            
+            setTimeout(() => {
+                popup.classList.remove('active');
+            }, 4500);
         }
 
-        function nextChapter() {
-            if (currentIndex < chapters.length - 1) {
-                showChapter(chapters[currentIndex + 1]);
+        // Timer de 15 Minutos
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = minutes + ":" + seconds;
+                if (--timer < 0) timer = duration;
+            }, 1000);
+        }
+
+        // Diminuir Vagas (Escassez)
+        function decreaseSpots() {
+            const spots = document.getElementById('spots-left');
+            let current = parseInt(spots.innerText);
+            if(current > 2) {
+                spots.innerText = current - 1;
+                spots.classList.add('scale-150');
+                setTimeout(() => spots.classList.remove('scale-150'), 200);
             }
         }
 
-        function prevChapter() {
-            if (currentIndex > 0) {
-                showChapter(chapters[currentIndex - 1]);
-            }
+        // Importar Script Hotmart
+        function importHotmart(){ 
+            var imported = document.createElement('script'); 
+            imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
+            document.head.appendChild(imported); 
+            var link = document.createElement('link'); 
+            link.rel = 'stylesheet'; 
+            link.type = 'text/css'; 
+            link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
+            document.head.appendChild(link); 
         }
 
-        function updateNavButtons() {
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const pageNum = document.getElementById('page-num');
-
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex === chapters.length - 1;
-            
-            if (currentIndex === chapters.length - 1) {
-                nextBtn.innerHTML = 'Finalizar <i class="fas fa-check ml-2"></i>';
-            } else {
-                nextBtn.innerHTML = 'Siguiente <i class="fas fa-arrow-right ml-2"></i>';
-            }
-
-            pageNum.textContent = currentIndex + 1;
-        }
-
-        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('-translate-x-full');
-        });
-
-        updateNavButtons();
-
-        async function shareApp() {
-            const shareData = {
-                title: 'Cabello de Diosa',
-                text: '¡Mira esta guía de secretos indios y chinos para el cabello! 🌿✨',
-                url: 'https://pieldeporcelana.vercel.app' 
-            };
-
-            try {
-                if (navigator.share) {
-                    await navigator.share(shareData);
-                } else {
-                    await navigator.clipboard.writeText(shareData.url);
-                    alert('¡Enlace copiado! Envíalo a tu amiga.');
-                }
-            } catch (err) {
-                console.log('Error al compartir:', err);
-            }
-        }
+        window.onload = function () {
+            importHotmart(); // Carrega Hotmart
+            startTimer(60 * 15, document.querySelector('#timer'));
+            setTimeout(showSaleNotification, 3000); 
+            setInterval(showSaleNotification, Math.random() * (15000 - 8000) + 8000);
+            setInterval(decreaseSpots, 25000);
+        };
     </script>
 </body>
 </html>
