@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto Cabello de Diosa - Acceso Limitado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap');
+
+        :root {
+            --primary: #15803d; /* Verde Esmeralda */
+            --urgent: #ef4444; /* Vermelho Urgência */
+        }
+
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* Animação de Pulso no Botão */
+        .pulse-btn {
+            animation: pulse-animation 2s infinite;
+        }
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0 rgba(21, 128, 61, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(21, 128, 61, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(21, 128, 61, 0); }
+        }
+
+        /* Notificação de Venda (Pop-up) */
+        .sales-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            transform: translateY(150%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 5px solid #15803d;
+            max-width: 300px;
+        }
+        .sales-notification.active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="bg-[#c2410c] text-white text-center py-2 text-sm font-bold sticky top-0 z-50">
+        ⚠️ ATENCIÓN: Solo quedan <span id="spots-left">7</span> cupos con el 80% de Descuento
+    </div>
+
+    <header class="container mx-auto px-4 py-8 md:py-12 text-center max-w-4xl">
+        <div class="inline-block bg-green-100 text-green-800 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+            🔥 Revelado: El Secreto de la Tribu Yao
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black leading-tight mb-4 text-gray-900">
+            Cómo <span class="text-[#15803d]">Recuperar tu Cabello</span> y Hacerlo Crecer 3x Más Rápido en 30 Días
+        </h1>
+        <p class="text-xl text-gray-600 mb-8">
+            Sin gastar en productos caros, sin químicos y utilizando ingredientes que ya tienes en tu cocina.
+        </p>
+
+        <div class="relative w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-2xl border-4 border-white mb-8">
+            <img src="hero-hair.jpg" alt="Cabello Largo Resultado" class="w-full">
+            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group cursor-pointer">
+                <div class="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center pl-1 shadow-lg group-hover:scale-110 transition">
+                    <i class="fas fa-play text-3xl text-[#15803d]"></i>
+                </div>
+            </div>
+        </div>
+
+        <a href="APP_URL_AQUI" class="pulse-btn bg-[#15803d] text-white text-2xl font-bold py-5 px-8 rounded-full shadow-xl hover:bg-[#166534] transition w-full md:w-auto inline-flex items-center justify-center gap-3">
+            SÍ, QUIERO MI CABELLO DE DIOSA
+            <i class="fas fa-arrow-right"></i>
+        </a>
+        <p class="text-xs text-gray-400 mt-3"><i class="fas fa-lock"></i> Acceso Inmediato • Compra Segura</p>
+    </header>
+
+    <section class="bg-white py-6 border-y border-gray-200">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 text-xs uppercase tracking-widest mb-4">Visto en</p>
+            <div class="flex justify-center gap-8 md:gap-16 opacity-50 grayscale">
+                <i class="fab fa-instagram text-3xl"></i>
+                <i class="fab fa-tiktok text-3xl"></i>
+                <i class="fab fa-youtube text-3xl"></i>
+                <i class="fab fa-pinterest text-3xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <h2 class="text-3xl font-bold text-center mb-12">¿Te sientes identificada?</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-red-100 p-3 rounded-full text-red-600"><i class="fas fa-times"></i></div>
+                        <p class="text-gray-700"><strong>Tu cabello no crece</strong> y parece estancado en el mismo largo hace años.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="bg-red-100 p-3 rounded-full text-red-600"><i class="fas fa-times"></i></div>
+                        <p class="text-gray-700">Tienes <strong>caída excesiva</strong> y ves demasiados pelos en la ducha.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="bg-red-100 p-3 rounded-full text-red-600"><i class="fas fa-times"></i></div>
+                        <p class="text-gray-700">Las puntas están <strong>abiertas, secas y sin vida</strong>.</p>
+                    </div>
+                    
+                    <div class="bg-green-50 p-6 rounded-lg border-l-4 border-[#15803d] mt-6">
+                        <h3 class="font-bold text-[#15803d] mb-2">Imagina esto en 30 días:</h3>
+                        <p class="text-sm">Un cabello brillante, fuerte y creciendo sin parar gracias al secreto del <strong>Agua de Arroz Fermentada</strong> y los aceites indios.</p>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <img src="before-after.jpg" alt="Antes y Después" class="rounded-xl shadow-lg border-4 border-white transform rotate-2 hover:rotate-0 transition">
+                    <div class="absolute -bottom-5 -right-5 bg-yellow-400 text-black font-bold px-4 py-2 rounded shadow-lg transform rotate-[-5deg]">
+                        ¡Resultados Reales!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Todo lo que incluye la App <span class="text-[#15803d]">Cabello de Diosa</span></h2>
+            <p class="text-gray-500 mb-12">No es un simple ebook. Es un sistema interactivo.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <img src="app-mockup.png" alt="App Mockup" class="mx-auto md:order-2">
+                
+                <div class="text-left space-y-4 md:order-1 flex flex-col justify-center">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <span><strong>25 Recetas Secretas</strong> (India, China, Tailandia)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <span><strong>Cronograma Capilar</strong> Automático de 4 Semanas</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <span><strong>Modo Offline:</strong> Úsala sin gastar datos en la cocina</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-gift text-yellow-500 text-xl"></i>
+                        <span><strong>BONUS:</strong> Acceso a Comunidad VIP en WhatsApp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-[#15803d] text-white text-center relative overflow-hidden">
+        <div class="absolute top-4 right-4 bg-red-600 px-4 py-1 rounded text-sm font-bold animate-pulse">
+            La oferta expira en: <span id="timer">15:00</span>
+        </div>
+
+        <div class="container mx-auto px-4">
+            <h3 class="text-2xl mb-4">Acceso Vitalicio + Actualizaciones</h3>
+            
+            <div class="text-gray-300 line-through text-xl">Precio Normal: $49.99</div>
+            <div class="text-6xl font-black text-yellow-400 mb-2 font-serif">$9.99</div>
+            <p class="text-sm mb-8 opacity-80">*Pago único. Sin mensualidades.*</p>
+
+            <a href="APP_URL_AQUI" class="bg-white text-[#15803d] text-2xl font-bold py-4 px-12 rounded-full shadow-2xl hover:scale-105 transition transform inline-block">
+                DESCARGAR AHORA
+            </a>
+            
+            <div class="mt-8 flex justify-center items-center gap-2 text-sm opacity-70">
+                <img src="guarantee.png" class="h-12 w-auto">
+                <p class="text-left leading-tight">30 Días de Garantía<br>de Satisfacción</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-2xl font-bold text-center mb-8">Lo que dicen en la comunidad</h2>
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
+                
+                <div class="flex gap-4">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" class="w-10 h-10 rounded-full">
+                    <div>
+                        <div class="bg-gray-100 rounded-2xl px-4 py-2">
+                            <h4 class="font-bold text-sm text-[#15803d]">Sofia Martínez</h4>
+                            <p class="text-sm text-gray-700">Chicas, el tónico de romero es REAL. Mis entradas se llenaron de pelitos nuevos en 2 semanas. ¡Gracias por la app!</p>
+                        </div>
+                        <div class="flex gap-4 text-xs text-gray-500 mt-1 ml-2">
+                            <span>Me gusta</span> · <span>Responder</span> · <span class="text-gray-400">Hace 2 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <img src="https://randomuser.me/api/portraits/women/22.jpg" class="w-10 h-10 rounded-full">
+                    <div>
+                        <div class="bg-gray-100 rounded-2xl px-4 py-2">
+                            <h4 class="font-bold text-sm text-[#15803d]">Valentina R.</h4>
+                            <p class="text-sm text-gray-700">Ya la descargué. Me encanta que las recetas sean con cosas baratas. El agua de arroz huele un poco raro pero FUNCIONA 😍</p>
+                        </div>
+                        <div class="flex gap-4 text-xs text-gray-500 mt-1 ml-2">
+                            <span>Me gusta</span> · <span>Responder</span> · <span class="text-gray-400">Hace 5 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <img src="https://randomuser.me/api/portraits/women/90.jpg" class="w-10 h-10 rounded-full">
+                    <div>
+                        <div class="bg-gray-100 rounded-2xl px-4 py-2">
+                            <h4 class="font-bold text-sm text-[#15803d]">Camila Torres</h4>
+                            <p class="text-sm text-gray-700">¿Sirve para cabello rizado?</p>
+                        </div>
+                        <div class="flex gap-4 text-xs text-gray-500 mt-1 ml-2">
+                            <span>Me gusta</span> · <span>Responder</span> · <span class="text-gray-400">Hace 10 min</span>
+                        </div>
+                        
+                        <div class="flex gap-4 mt-3 ml-2">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-8 h-8 rounded-full">
+                            <div>
+                                <div class="bg-green-50 rounded-2xl px-4 py-2 border border-green-100">
+                                    <h4 class="font-bold text-xs text-[#15803d]">Admin <i class="fas fa-check-circle"></i></h4>
+                                    <p class="text-xs text-gray-700">¡Sí Camila! La sección de Hidratación Profunda es ideal para rizos. 🌀</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <p class="text-center text-xs text-gray-400 mt-4"><i class="fas fa-users"></i> 124 personas están viendo esta página ahora.</p>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-2xl font-bold text-center mb-8">Preguntas Frecuentes</h2>
+            
+            <div class="space-y-4">
+                <details class="bg-gray-50 p-4 rounded-lg cursor-pointer">
+                    <summary class="font-bold text-[#15803d]">¿Necesito internet para usarla?</summary>
+                    <p class="mt-2 text-sm text-gray-600">No. Una vez abierta, la App funciona offline para que puedas ver las recetas en cualquier lugar.</p>
+                </details>
+                <details class="bg-gray-50 p-4 rounded-lg cursor-pointer">
+                    <summary class="font-bold text-[#15803d]">¿Son ingredientes caros?</summary>
+                    <p class="mt-2 text-sm text-gray-600">Para nada. El 90% son ingredientes como: arroz, romero, huevo, aceite de oliva, azúcar, etc.</p>
+                </details>
+                <details class="bg-gray-50 p-4 rounded-lg cursor-pointer">
+                    <summary class="font-bold text-[#15803d]">¿Cómo recibo la App?</summary>
+                    <p class="mt-2 text-sm text-gray-600">Es acceso inmediato. Al tocar el botón se abrirá la aplicación en tu navegador.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-xs">
+        <p class="mb-2">Cabello de Diosa © 2025</p>
+        <div class="flex justify-center gap-4">
+            <a href="#" class="hover:text-white">Términos</a>
+            <a href="#" class="hover:text-white">Privacidad</a>
+        </div>
+        <p class="mt-4 opacity-50">Este sitio no es parte de Facebook o Meta Inc.</p>
+    </footer>
+
+    <div id="sales-popup" class="sales-notification">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="w-10 h-10 rounded-full border border-gray-200">
+        <div>
+            <p class="text-xs text-gray-500"><span class="font-bold text-gray-800" id="buyer-name">Ana de México</span> acaba de comprar</p>
+            <p class="text-xs text-green-600 font-bold">Plan Acceso Total</p>
+        </div>
+        <p class="text-xs text-gray-400 ml-auto">hace <span id="time-ago">2s</span></p>
+    </div>
+
+    <script>
+        // 1. TIMER DE URGÊNCIA (15 Minutos Loop)
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        // 2. SISTEMA DE NOTIFICAÇÕES DE COMPRA (FAKE SALES)
+        const names = [
+            "María de México", "Ana de Colombia", "Sofía de España", "Carla de Chile", 
+            "Valentina de Perú", "Laura de Argentina", "Gabriela de USA", "Lucía de Ecuador"
+        ];
+        
+        function showSaleNotification() {
+            const popup = document.getElementById('sales-popup');
+            const nameEl = document.getElementById('buyer-name');
+            const timeEl = document.getElementById('time-ago');
+            
+            // Randomizar dados
+            nameEl.textContent = names[Math.floor(Math.random() * names.length)];
+            timeEl.textContent = Math.floor(Math.random() * 5 + 1) + "s";
+            
+            // Mostrar
+            popup.classList.add('active');
+            
+            // Esconder após 4 segundos
+            setTimeout(() => {
+                popup.classList.remove('active');
+            }, 4000);
+        }
+
+        // 3. ATUALIZAR "VAGAS RESTANTES"
+        function decreaseSpots() {
+            const spots = document.getElementById('spots-left');
+            let current = parseInt(spots.innerText);
+            if(current > 2) {
+                spots.innerText = current - 1;
+            }
+        }
+
+        window.onload = function () {
+            // Iniciar Timer
+            var fifteenMinutes = 60 * 15,
+                display = document.querySelector('#timer');
+            startTimer(fifteenMinutes, display);
+
+            // Iniciar Notificações (A cada 8 a 15 segundos)
+            setInterval(showSaleNotification, Math.random() * (15000 - 8000) + 8000);
+            
+            // Diminuir vagas (A cada 20 segundos)
+            setInterval(decreaseSpots, 20000);
+        };
+    </script>
+</body>
+</html>
