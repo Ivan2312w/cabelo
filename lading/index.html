@@ -218,6 +218,8 @@
                 </div>
             </div>
         </div>
+        
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
     </section>
 
     <section class="py-20 bg-gray-50">
@@ -279,7 +281,76 @@
         </div>
     </section>
 
+    <section class="py-20 bg-white border-t border-gray-100">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-12">
+                <span class="text-[#15803d] font-bold tracking-widest uppercase text-sm">¿Tienes dudas?</span>
+                <h2 class="text-3xl font-bold mt-2 font-serif text-gray-900">Preguntas Frecuentes</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer border border-transparent hover:border-green-200 transition duration-300 open:bg-green-50 open:border-green-200 open:shadow-md">
+                    <summary class="font-bold text-lg text-[#15803d] flex justify-between items-center list-none select-none">
+                        ¿Funciona para cabello teñido o decolorado?
+                        <span class="transition-transform duration-300 group-open:rotate-180 bg-green-200 rounded-full w-8 h-8 flex items-center justify-center text-green-700"><i class="fas fa-chevron-down text-sm"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed pl-2 border-l-4 border-green-300">
+                        <p><strong>¡Sí!</strong> De hecho, es el que más se beneficia. El Agua de Arroz Fermentada es rica en inositol, que repara el cabello dañado desde adentro, devolviendo la elasticidad.</p>
+                    </div>
+                </details>
+                
+                <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer border border-transparent hover:border-green-200 transition duration-300 open:bg-green-50 open:border-green-200 open:shadow-md">
+                    <summary class="font-bold text-lg text-[#15803d] flex justify-between items-center list-none select-none">
+                        ¿El agua de arroz dejará mal olor?
+                        <span class="transition-transform duration-300 group-open:rotate-180 bg-green-200 rounded-full w-8 h-8 flex items-center justify-center text-green-700"><i class="fas fa-chevron-down text-sm"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed pl-2 border-l-4 border-green-300">
+                        <p>No te preocupes. Enseñamos el <strong>"Secreto de los Aceites Esenciales"</strong> y la técnica de enjuague correcta. Tu cabello olerá a limpio y fresco.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer border border-transparent hover:border-green-200 transition duration-300 open:bg-green-50 open:border-green-200 open:shadow-md">
+                    <summary class="font-bold text-lg text-[#15803d] flex justify-between items-center list-none select-none">
+                        ¿Necesito comprar ingredientes caros?
+                        <span class="transition-transform duration-300 group-open:rotate-180 bg-green-200 rounded-full w-8 h-8 flex items-center justify-center text-green-700"><i class="fas fa-chevron-down text-sm"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed pl-2 border-l-4 border-green-300">
+                        <p>¡Para nada! El 90% son ingredientes como: arroz, romero, jengibre, huevo, aceite de oliva, azúcar, etc. Es mucho más barato que productos de marca.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer border border-transparent hover:border-green-200 transition duration-300 open:bg-green-50 open:border-green-200 open:shadow-md">
+                    <summary class="font-bold text-lg text-[#15803d] flex justify-between items-center list-none select-none">
+                        ¿Cómo recibo el acceso a la App?
+                        <span class="transition-transform duration-300 group-open:rotate-180 bg-green-200 rounded-full w-8 h-8 flex items-center justify-center text-green-700"><i class="fas fa-chevron-down text-sm"></i></span>
+                    </summary>
+                    <div class="mt-4 text-gray-600 leading-relaxed pl-2 border-l-4 border-green-300">
+                        <p>Es <strong>inmediato</strong>. Al completar tu pago de $9.99, recibirás un correo electrónico con tu enlace personal de acceso. No hay que descargar nada pesado.</p>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#oferta" class="inline-block bg-[#15803d] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#166534] transition transform hover:-translate-y-1">
+                    Quiero Empezar Mi Reto Ahora
+                </a>
+            </div>
+        </div>
+    </section>
+
     <footer class="bg-gray-900 text-gray-400 py-10 text-center text-xs">
+        <div class="mb-4">
+            <i class="fas fa-crown text-2xl text-gray-700 mb-2 block"></i>
+            <span class="font-serif text-lg text-gray-500">Cabello de Diosa</span>
+        </div>
+        <div class="flex justify-center gap-6 mb-6">
+            <a href="#" class="hover:text-white transition">Términos de Uso</a>
+            <a href="#" class="hover:text-white transition">Políticas de Privacidad</a>
+            <a href="#" class="hover:text-white transition">Contacto</a>
+        </div>
+        <p class="opacity-50 max-w-md mx-auto leading-relaxed">
+            Este sitio no es parte del sitio web de Facebook o Facebook Inc. Además, este sitio no está respaldado por Facebook de ninguna manera.
+        </p>
         <p class="mt-4 opacity-30">© 2025 Todos los derechos reservados.</p>
     </footer>
 
@@ -302,14 +373,21 @@
     </div>
 
     <script>
+        // Lista de Compradoras (Fakes)
         const buyers = [
             { name: "María G. de México", photo: "https://randomuser.me/api/portraits/women/44.jpg" },
             { name: "Ana P. de Colombia", photo: "https://randomuser.me/api/portraits/women/68.jpg" },
             { name: "Sofía R. de España", photo: "https://randomuser.me/api/portraits/women/65.jpg" },
             { name: "Carla T. de Chile", photo: "https://randomuser.me/api/portraits/women/33.jpg" },
-            { name: "Valentina M. de Perú", photo: "https://randomuser.me/api/portraits/women/90.jpg" }
+            { name: "Valentina M. de Perú", photo: "https://randomuser.me/api/portraits/women/90.jpg" },
+            { name: "Laura D. de Argentina", photo: "https://randomuser.me/api/portraits/women/54.jpg" },
+            { name: "Gabriela S. de USA", photo: "https://randomuser.me/api/portraits/women/28.jpg" },
+            { name: "Lucía F. de Ecuador", photo: "https://randomuser.me/api/portraits/women/12.jpg" },
+            { name: "Fernanda L. de México", photo: "https://randomuser.me/api/portraits/women/76.jpg" },
+            { name: "Isabella C. de Colombia", photo: "https://randomuser.me/api/portraits/women/42.jpg" }
         ];
 
+        // Mostrar Notificação
         function showSaleNotification() {
             const popup = document.getElementById('sales-popup');
             const nameEl = document.getElementById('buyer-name');
@@ -329,6 +407,7 @@
             }, 4500);
         }
 
+        // Timer de 15 Minutos
         function startTimer(duration, display) {
             var timer = duration, minutes, seconds;
             setInterval(function () {
@@ -341,6 +420,7 @@
             }, 1000);
         }
 
+        // Diminuir Vagas (Escassez)
         function decreaseSpots() {
             const spots = document.getElementById('spots-left');
             let current = parseInt(spots.innerText);
